@@ -1,19 +1,33 @@
-# :earth_americas: GDP dashboard template
+# MLBL League Analytics — Streamlit
 
-A simple Streamlit app showing the GDP of different countries in the world.
+## Files
+- `app.py`: Streamlit dashboard
+- `requirements.txt`: Python dependencies
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gdp-dashboard-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
+## Run locally
+1. Put `app.py`, `requirements.txt`, `Book1.csv`, and `Book2.csv` in the same directory.
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
    ```
-   $ pip install -r requirements.txt
+3. Start the app:
+   ```bash
+   streamlit run app.py
    ```
 
-2. Run the app
+You can also upload the two CSV files in the app's sidebar, so they do not need to be beside `app.py`.
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+## Deploy
+Push `app.py` and `requirements.txt` to a GitHub repository, then deploy the repository through Streamlit Community Cloud. Upload the CSVs through the app's sidebar after deployment, or include them in the repository if the data is intended to be public.
+
+## Data format
+Player CSV should contain:
+`Number, Name, Team, G, AB, R, H, 2B, 3B, HR, RBI, BB, SO, HBP, SB, CS, ROE, AVG, OBP, SLG, OPS`
+
+Team CSV should contain:
+`Team, G, AB, R, H, 2B, 3B, HR, RBI, BB, SO, HBP, SB, CS, ROE, AVG, OBP, SLG, OPS`
+
+The app removes blank `Unnamed: ...` columns automatically.
+
+## OPS+ note
+The app follows the notebook's simplified OPS+ formula and uses aggregate player totals to calculate league OBP and SLG. It does not apply park factors, and therefore should be described as a league-adjusted OPS+ estimate rather than official MLB OPS+.
